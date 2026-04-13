@@ -28,9 +28,11 @@ public class UserController {
     /* TODO 1
      * GET /users
      * 모든 저장된 멤버들을 출력
-     */
+     *
+
 
     /* TODO 1-1 */
+    @GetMapping("/user")
     public String getUsers(Model model) {
         List<User> users = userRepository.getUsers();
         model.addAttribute("users", users);
@@ -43,8 +45,8 @@ public class UserController {
      */
 
     /* TODO 2-1 */
-    public String getUser(Model model,
-                          /* TODO 2-2 */String id) {
+    @GetMapping("/user/{id}")
+    public String getUser(Model model,@PathVariable("id")/* TODO 2-2 */String id) {
         User user = userRepository.getUser(id);
         model.addAttribute("user", user);
         return "user";
@@ -56,8 +58,8 @@ public class UserController {
      */
 
     /* TODO 3-1 */
-    public String getUserByName(Model model,
-                                /* TODO 3-2 */String id) {
+    @GetMapping("/user")
+    public String getUserByName(Model model,@RequestParam("id")/* TODO 3-2 */String id) {
         User user = userRepository.getUser(id);
         model.addAttribute("user", user);
         return "user";
