@@ -1,8 +1,12 @@
 package com.nhnacademy.springbootmvc.controller;
 
+import com.nhnacademy.springbootmvc.domain.Post;
+import com.nhnacademy.springbootmvc.domain.PostRegisterRequest;
 import com.nhnacademy.springbootmvc.repository.PostRepository;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,8 +27,12 @@ public class PostRegisterController {
 
     // TODO #1: 게시물 등록 처리 구현
     @PostMapping
-    public ModelAndView registerPost() {
-        return null;
+    public ModelAndView registerPost(@ModelAttribute PostRegisterRequest request, Model model) {
+        Post post = postRepository.register(request.getTitle(), request.getContent());
+        model.addAttribute("Post", post);
+        ModelAndView mav = new ModelAndView("post");
+        mav.addObject("post",post);
+        return mav;
     }
 
 }
