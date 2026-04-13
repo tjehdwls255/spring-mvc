@@ -26,7 +26,7 @@ class LoginController {
     //          `SESSION` 이라는 쿠키가 있으면 로그인 완료 메세지 출력 (`loginSuccess.html`).
     //          `SESSION` 이라는 쿠키가 없으면 로그인 폼 화면 출력 (`loginForm.html`).
     @GetMapping("/login")
-    public String login(@CookieValue(name = "SESSION", required = true)String id) {
+    public String login(@CookieValue(name = "SESSION", required = false)String sessionId) {
         if(sessionId != null){
             return "login success";
         }
@@ -44,7 +44,7 @@ class LoginController {
             HttpSession session = request.getSession(true);
             Cookie cookie = new Cookie("SESSION",session.getId());
             response.addCookie(cookie);
-            model.addAttribute("SESSION", cookie.getAttribute("SESSION"));
+            model.addAttribute("id", session.getId());
             return "loginSuccess";
         }
         return "redirect:/login";
