@@ -5,6 +5,7 @@ import com.nhnacademy.springbootmvc.repository.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Map;
@@ -23,5 +24,14 @@ public class UserController {
         //TODO 2: user 목록을 모델의 attribute 추가
         model.addAttribute("users",users);
         return "users";
+    }
+
+    @GetMapping("/user")
+    public ModelAndView getUsers() {
+        List<User> users = userRepository.getUsers();
+        ModelAndView mav = new ModelAndView("users");
+        //TODO 2: user 목록을 모델의 attribute 추가
+        mav.addObject("users",users);
+        return mav;
     }
 }
