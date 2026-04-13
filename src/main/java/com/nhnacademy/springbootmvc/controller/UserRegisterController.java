@@ -33,6 +33,7 @@ public class UserRegisterController {
         ModelAndView mav = new ModelAndView("user");
         mav.addObject("user", User.constructPasswordMaskedUser(user));
 
+
         return mav;
     }
 }
