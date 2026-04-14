@@ -3,9 +3,11 @@ package com.nhnacademy.springbootmvc.controller;
 import com.nhnacademy.springbootmvc.domain.Post;
 import com.nhnacademy.springbootmvc.exception.PostNotFoundException;
 import com.nhnacademy.springbootmvc.repository.PostRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +43,7 @@ public class PostController {
     }
 
     @GetMapping("/{postId}/modify")
-    public String postModifyForm(@ModelAttribute("post") Post post,
+    public String postModifyForm(@Valid  @ModelAttribute("post") Post post, BindingResult bindingResult,
                                  Model model) {
         if (Objects.isNull(post)) {
             model.addAttribute("exception", new PostNotFoundException());
