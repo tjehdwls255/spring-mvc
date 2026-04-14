@@ -72,6 +72,6 @@ public class UserController {
         userRepository.modify(user);
 
         model.addAttribute("user", user);
-        return "userInfo";
+        return "user";
     }
 }
