@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 // TODO #5: 파일 업로드 처리
 @Controller
 public class FileUploadController {
-    private static final String UPLOAD_DIR = "/Users/user/Downloads/";
+    private static final String UPLOAD_DIR = "/Users/a1234/Downloads/";
 
     @PostMapping("/fileUpload")
     public String processUpload(@RequestParam("file") MultipartFile file,
@@ -23,5 +23,8 @@ public class FileUploadController {
         model.addAttribute("size", file.getSize());
 
         return "uploadSuccess";
+
+
+
     }
 }
