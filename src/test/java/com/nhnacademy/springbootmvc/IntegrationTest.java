@@ -30,4 +30,17 @@ class IntegrationTest {
         assertThat(res.getBody().toString()).contains("Hello");
         System.out.println(res);
     }
+
+    @Test
+    void testGetUser() throws Exception{
+        ResponseEntity<String> entity = this.restTemplate.getForEntity("https://localhost:"+port+"/users", String.class);
+
+        assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(entity.getBody().toString()).contains("tom");
+        System.out.println(entity);
+    }
+
+    @Test
+    void testGetPost()
+
 }
