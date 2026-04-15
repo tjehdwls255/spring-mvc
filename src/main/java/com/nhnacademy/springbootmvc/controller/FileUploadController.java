@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 
 @Controller
 public class FileUploadController {
-    private static final String UPLOAD_DIR = "/Users/user/Downloads/";
+    private static final String UPLOAD_DIR = "/Users/a1234/Downloads/";
 
     @PostMapping("/fileUpload")
     public String processUpload(@RequestParam("file") MultipartFile file,
